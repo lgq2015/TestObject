@@ -1,0 +1,35 @@
+RASeekOrigin = enum {
+    SEEK_FROM_BEGIN;
+    SEEK_FROM_END;
+    SEEK_FROM_CURRENT;
+}
+
+IRAFileStream = interface{
+    
+    #从当前位置将文件的二进制内容读取到readBuffer中。
+    #@readBuffer 存储读取数据的buffer。
+    #@readSize 需要读取的二进制数据的大小。
+    #@return 实际读取到的大小， 如果文件到达末尾则返回-1
+    read(readBuffer: binary, readSize:i64):i64;
+
+    #从当前位置将data写入到文件中。
+    #@dataToWrite 存放要写入的数据缓存。
+    #@writeSize 需要写入的二进制数据大小。
+    #@return 实际写入的二进制数据的大小，如果无法写入则返回-1
+    write(dataToWrite:binary, writeSize:i64):i64;
+
+    #移动当前文件指向的位置
+    #@pos 移动的位置
+    #@origin 相对于哪里开始移动。
+    #@return 相对于 origin 参数的字节偏移量
+    seek(pos:i64, origin:RASeekOrigin):i64;
+
+    #@return 文件的大小
+    size():i64;
+    
+    #@return 返回当前文件指向的位置
+    tell():i64;
+
+    #关闭这个文件流
+    close();
+}
