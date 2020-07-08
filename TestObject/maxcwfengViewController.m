@@ -7,6 +7,7 @@
 //
 
 #import "maxcwfengViewController.h"
+#import "fengchiweiViewController.h"
 #import "RALocalFileSystem.h"
 #import "MyWorkerClass.h"
 
@@ -86,7 +87,25 @@
     
     self.title = @"fff刚问过";
     
+    UIButton *tempBtn = [[UIButton alloc] initWithFrame:CGRectMake(200, 350, 100, 50)];
+    tempBtn.backgroundColor = [UIColor blueColor];
+    [tempBtn setTitle:@"test" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:tempBtn];
+    
     [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(action:) userInfo:nil repeats:NO];
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.title = @"这是1";
+}
+
+- (void)btnClick
+{
+    fengchiweiViewController* tempVC = [[fengchiweiViewController alloc] init];
+    [self.navigationController pushViewController:tempVC animated:YES];
 }
 
 - (void)handlePortMessage:(id)message{
