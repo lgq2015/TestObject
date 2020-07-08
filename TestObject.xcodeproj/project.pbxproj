@@ -394,12 +394,21 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WG256MA2SR;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CocoaHotReload",
+				);
 				INFOPLIST_FILE = TestObject/InfoEx.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TestObject/lame",
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-l\"c++\"",
+					"-force_load",
+					"$(SRCROOT)/CocoaHotReload/CocoaHotReload.framework/CocoaHotReload",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fengchiwei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -416,6 +425,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WG256MA2SR;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CocoaHotReload",
+				);
 				INFOPLIST_FILE = TestObject/InfoEx.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

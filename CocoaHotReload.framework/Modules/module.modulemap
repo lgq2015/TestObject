@@ -1,0 +1,6 @@
+framework module CocoaHotReload {
+  umbrella header "CocoaHotReload.h"
+
+  export *
+  module * { export * }
+}

@@ -84,6 +84,8 @@
     self.thread = [[NSThread alloc]initWithTarget:work selector:@selector(launchThreadWithPort:) object:myPort];
     [self.thread start];
     
+    self.title = @"fff刚问过";
+    
     [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(action:) userInfo:nil repeats:NO];
 }
 

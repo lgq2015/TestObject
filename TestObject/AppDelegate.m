@@ -10,6 +10,9 @@
 #import "fengchiweiViewController.h"
 #import "maxcwfengViewController.h"
 #import "SoundView.h"
+#if DEBUG
+#import <CocoaHotReload/CocoaHotReload.h>
+#endif
 
 @interface AppDelegate ()
 
@@ -35,6 +38,11 @@
     
     [self.window setRootViewController:tempNv];
     [self.window makeKeyAndVisible];
+    
+    #ifdef DEBUG
+        [CocoaHotReload run];
+    #endif
+        return YES;
     
     return YES;
 }
