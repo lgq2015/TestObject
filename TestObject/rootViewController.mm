@@ -1,20 +1,22 @@
 //
-//  maxcwfengViewController.m
+//  rootViewController.m
 //  TestObject
 //
 //  Created by maxcwfeng on 2018/6/21.
 //  Copyright © 2018年 冯驰伟. All rights reserved.
 //
 
-#import "maxcwfengViewController.h"
+#import "rootViewController.h"
 #import "fengchiweiViewController.h"
 #import "RALocalFileSystem.h"
 #import "MyWorkerClass.h"
+#include "testHpp.hpp"
+#include "testCPPEleven.hpp"
 
 #define kMsg1 100
 #define kMsg2 101
 
-@interface maxcwfengViewController()<NSPortDelegate>
+@interface rootViewController()<NSPortDelegate>
 {
     CFAbsoluteTime startTime;
     CATransform3D _transform;
@@ -61,10 +63,11 @@
 @property (nonatomic,strong) NSThread *thread;
 
 
+
 @end
 
 //------------------------------------------------------------------
-@implementation maxcwfengViewController
+@implementation rootViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -85,7 +88,6 @@
     self.thread = [[NSThread alloc]initWithTarget:work selector:@selector(launchThreadWithPort:) object:myPort];
     [self.thread start];
     
-    self.title = @"fff刚问过";
     
     UIButton *tempBtn = [[UIButton alloc] initWithFrame:CGRectMake(200, 350, 100, 50)];
     tempBtn.backgroundColor = [UIColor blueColor];
@@ -93,13 +95,17 @@
     [tempBtn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:tempBtn];
     
-    [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(action:) userInfo:nil repeats:NO];
+    //C++11语言测试入口
+    mainTest();
+    
+    //定时器设置
+    //[NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(action:) userInfo:nil repeats:YES];
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.title = @"这是1";
+    self.title = @"rootVC-1";
 }
 
 - (void)btnClick
@@ -109,7 +115,6 @@
 }
 
 - (void)handlePortMessage:(id)message{
-
     NSLog(@"接到子线程传递的消息！%@",message);
     
     NSArray* array = [message valueForKeyPath:@"components"];
