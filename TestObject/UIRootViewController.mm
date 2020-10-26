@@ -1,13 +1,13 @@
 //
-//  rootViewController.m
+//  UIRootViewController.m
 //  TestObject
 //
 //  Created by maxcwfeng on 2018/6/21.
 //  Copyright © 2018年 冯驰伟. All rights reserved.
 //
 
-#import "rootViewController.h"
-#import "fengchiweiViewController.h"
+#import "UIRootViewController.h"
+#import "UITestViewController.h"
 #import "RALocalFileSystem.h"
 #import "MyWorkerClass.h"
 #include "testHpp.hpp"
@@ -16,7 +16,7 @@
 #define kMsg1 100
 #define kMsg2 101
 
-@interface rootViewController()<NSPortDelegate>
+@interface UIRootViewController()<NSPortDelegate>
 {
     CFAbsoluteTime startTime;
     CATransform3D _transform;
@@ -67,7 +67,7 @@
 @end
 
 //------------------------------------------------------------------
-@implementation rootViewController
+@implementation UIRootViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -110,7 +110,7 @@
 
 - (void)btnClick
 {
-    fengchiweiViewController* tempVC = [[fengchiweiViewController alloc] init];
+    UITestViewController* tempVC = [[UITestViewController alloc] init];
     [self.navigationController pushViewController:tempVC animated:YES];
 }
 

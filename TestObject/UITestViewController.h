@@ -1,5 +1,5 @@
 //
-//  fengchiweiViewController.h
+//  UITestViewController.h
 //  TestObject
 //
 //  Created by 冯驰伟 on 2017/12/25.
@@ -13,7 +13,7 @@
 
 #define kNumberAudioQueueBuffers 3  //定义了三个缓冲区
 
-@interface fengchiweiViewController : UIViewController
+@interface UITestViewController : UIViewController
 {
     AudioStreamBasicDescription _recordFormat;///音频参数
     AudioQueueRef _audioQueue;//音频播放队列

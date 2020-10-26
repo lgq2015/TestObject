@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "fengchiweiViewController.h"
-#import "rootViewController.h"
+#import "UITestViewController.h"
+#import "UIRootViewController.h"
 #import "SoundView.h"
 #if DEBUG
 #import <CocoaHotReload/CocoaHotReload.h>
@@ -29,7 +29,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    rootViewController* rootVC = [rootViewController new];
+    UIRootViewController* rootVC = [UIRootViewController new];
     UINavigationController* tempNv = [[UINavigationController alloc] initWithRootViewController:rootVC];
     
     [self.window setRootViewController:tempNv];

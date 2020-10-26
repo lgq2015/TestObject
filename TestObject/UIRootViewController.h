@@ -1,5 +1,5 @@
 //
-//  rootViewController.h
+//  UIRootViewController.h
 //  TestObject
 //
 //  Created by maxcwfeng on 2018/6/21.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-@interface rootViewController : UIViewController
+@interface UIRootViewController : UIViewController
 
 @end
