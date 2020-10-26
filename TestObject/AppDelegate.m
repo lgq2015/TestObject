@@ -39,7 +39,6 @@
         [CocoaHotReload run];
     #endif
     
-    //fengchiwei
     return YES;
 }
 
