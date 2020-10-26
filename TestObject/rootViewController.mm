@@ -1,39 +1,22 @@
 //
-<<<<<<< HEAD:TestObject/rootViewController.mm
 //  rootViewController.m
-=======
-//  UIRootViewController.m
->>>>>>> 无:TestObject/UIRootViewController.m
 //  TestObject
 //
 //  Created by maxcwfeng on 2018/6/21.
 //  Copyright © 2018年 冯驰伟. All rights reserved.
 //
 
-<<<<<<< HEAD:TestObject/rootViewController.mm
 #import "rootViewController.h"
 #import "fengchiweiViewController.h"
 #import "RALocalFileSystem.h"
 #import "MyWorkerClass.h"
 #include "testHpp.hpp"
 #include "testCPPEleven.hpp"
-=======
-#import "UIRootViewController.h"
-#import "RALocalFileSystem.h"
-#import "MyWorkerClass.h"
-#import <WebKit/WKWebView.h>
-#import <WebKit/WKNavigationDelegate.h>
-#import <WebKit/WKNavigationAction.h>
->>>>>>> 无:TestObject/UIRootViewController.m
 
 #define kMsg1 100
 #define kMsg2 101
 
-<<<<<<< HEAD:TestObject/rootViewController.mm
 @interface rootViewController()<NSPortDelegate>
-=======
-@interface UIRootViewController()<NSPortDelegate>
->>>>>>> 无:TestObject/UIRootViewController.m
 {
     CFAbsoluteTime startTime;
     CATransform3D _transform;
@@ -78,27 +61,13 @@
 @property (strong, nonatomic) NSMutableArray *gifImages;
 
 @property (nonatomic,strong) NSThread *thread;
-@property (nonatomic,strong) WKWebView* webView;
 
 
 
 @end
 
 //------------------------------------------------------------------
-<<<<<<< HEAD:TestObject/rootViewController.mm
 @implementation rootViewController
-=======
-@implementation UIRootViewController
-
-- (void)loadView{
-    [super loadView];
-    
-    self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
-    _webView.UIDelegate = self;
-    _webView.navigationDelegate = self;
-    [self.view addSubview:_webView];
-}
->>>>>>> 无:TestObject/UIRootViewController.m
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -118,9 +87,7 @@
     MyWorkerClass *work = [[MyWorkerClass alloc] init];
     self.thread = [[NSThread alloc]initWithTarget:work selector:@selector(launchThreadWithPort:) object:myPort];
     [self.thread start];
-    [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(action:) userInfo:nil repeats:NO];
     
-<<<<<<< HEAD:TestObject/rootViewController.mm
     
     UIButton *tempBtn = [[UIButton alloc] initWithFrame:CGRectMake(200, 350, 100, 50)];
     tempBtn.backgroundColor = [UIColor blueColor];
@@ -133,32 +100,6 @@
     
     //定时器设置
     //[NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(action:) userInfo:nil repeats:YES];
-=======
-    NSString * combineHtml = [self loadHtml];
-    NSURL *baseURL = nil;
-    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-    if (resourcePath) {
-        baseURL = [NSURL fileURLWithPath:resourcePath isDirectory:YES];
-    }
-    [_webView loadHTMLString:combineHtml baseURL:baseURL];
-}
-
-- (NSString*)loadHtml
-{
-    NSString *tmplPath = [[NSBundle mainBundle] pathForResource:@"testhtmlEx" ofType:@"html"];
-    NSMutableString *htmlTemplate = [[NSMutableString alloc] initWithString:[NSString stringWithContentsOfFile:tmplPath encoding:NSUTF8StringEncoding error:nil]];
-    
-    return htmlTemplate;
-}
-
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
-    
-    NSURLRequest *request = navigationAction.request;
-    NSURL *url = [request URL];
-    NSString *scheme = [[url scheme] lowercaseString];
-    
-    decisionHandler(WKNavigationActionPolicyAllow);
->>>>>>> 无:TestObject/UIRootViewController.m
 }
 
 -(void) viewWillAppear:(BOOL)animated

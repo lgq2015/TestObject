@@ -1,12 +1,12 @@
 //
-//  UITestViewController.m
+//  fengchiweiViewController.m
 //  TestObject
 //
 //  Created by 冯驰伟 on 2017/12/25.
 //  Copyright © 2017年 冯驰伟. All rights reserved.
 //
 
-#import "UITestViewController.h"
+#import "fengchiweiViewController.h"
 #import "lame.h"
 
 
@@ -22,7 +22,7 @@ void completionCallback(SystemSoundID  ssID, void *clientData)
 {
 }
 
-@interface UITestViewController()
+@interface fengchiweiViewController()
 {
     CFAbsoluteTime startTime;
     
@@ -53,7 +53,7 @@ void completionCallback(SystemSoundID  ssID, void *clientData)
 
 @end
 
-@implementation UITestViewController
+@implementation fengchiweiViewController
 
 -(void) loadView
 {
@@ -395,7 +395,7 @@ self.isRecording = YES;
 void inputBufferHandler(void *inUserData, AudioQueueRef inAQ, AudioQueueBufferRef inBuffer, const AudioTimeStamp *inStartTime,UInt32 inNumPackets, const AudioStreamPacketDescription *inPacketDesc)
 {
 
-    UITestViewController* delegetVC = (__bridge UITestViewController*) inUserData;
+    fengchiweiViewController* delegetVC = (__bridge fengchiweiViewController*) inUserData;
     if (inNumPackets > 0) {
         NSLog(@"in the callback the current thread is %@\n",[NSThread currentThread]);
         
