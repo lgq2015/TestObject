@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "fengchiweiViewController.h"
-#import "rootViewController.h"
+#import "UITestViewController.h"
+#import "UIRootViewController.h"
 #import "SoundView.h"
 #if DEBUG
 #import <CocoaHotReload/CocoaHotReload.h>
@@ -26,11 +26,15 @@
     [[NSBundle bundleWithPath:@"/Applications/InjectionIII.app/Contents/Resources/iOSInjection.bundle"] load];
     
     // Override point for customization after application launch.
+    // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    rootViewController* rootVC = [rootViewController new];
-    UINavigationController* tempNv = [[UINavigationController alloc] initWithRootViewController:rootVC];
+//    UITestViewController* tempVc = [UITestViewController new];
+//    UINavigationController* tempNv = [[UINavigationController alloc] initWithRootViewController:tempVc];
+    
+    UIRootViewController* tempVc = [UIRootViewController new];
+    UINavigationController* tempNv = [[UINavigationController alloc] initWithRootViewController:tempVc];
     
     [self.window setRootViewController:tempNv];
     [self.window makeKeyAndVisible];
@@ -38,6 +42,7 @@
     #ifdef DEBUG
         [CocoaHotReload run];
     #endif
+        return YES;
     
     return YES;
 }

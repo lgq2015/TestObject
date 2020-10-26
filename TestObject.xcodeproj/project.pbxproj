@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0C8D842546A9CA00DAAF2D /* testhtml.html in Resources */ = {isa = PBXBuildFile; fileRef = 2B0C8D832546A9CA00DAAF2D /* testhtml.html */; };
+		2B0C8DC32546ACCD00DAAF2D /* testhtmlEx.html in Resources */ = {isa = PBXBuildFile; fileRef = 2B0C8DC22546ACCD00DAAF2D /* testhtmlEx.html */; };
 		2B36298F24518953003F2F2A /* MyWorkerClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B36298E24518953003F2F2A /* MyWorkerClass.m */; };
 		2B56142F21DA6C5100EC79B3 /* IRAFile.djinni in Resources */ = {isa = PBXBuildFile; fileRef = 2B56141321DA6C5100EC79B3 /* IRAFile.djinni */; };
 		2B56143021DA6C5100EC79B3 /* IRAFileSystem.djinni in Resources */ = {isa = PBXBuildFile; fileRef = 2B56141421DA6C5100EC79B3 /* IRAFileSystem.djinni */; };
@@ -29,49 +31,14 @@
 		2BFEFB5421C1439B009C406E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFEFB0821C1439B009C406E /* main.m */; };
 		2BFEFB5521C1439B009C406E /* msgTritone.caf in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFB0921C1439B009C406E /* msgTritone.caf */; };
 		2BFEFB5621C1439B009C406E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFEFB0A21C1439B009C406E /* AppDelegate.m */; };
-		2BFEFB5721C1439B009C406E /* fengchiweiViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BFEFB0B21C1439B009C406E /* fengchiweiViewController.mm */; };
-		2BFEFB5821C1439B009C406E /* rootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BFEFB0D21C1439B009C406E /* rootViewController.mm */; };
+		2BFEFB5721C1439B009C406E /* UITestViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BFEFB0B21C1439B009C406E /* UITestViewController.mm */; };
+		2BFEFB5821C1439B009C406E /* UIRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFEFB0D21C1439B009C406E /* UIRootViewController.m */; };
 		2BFEFB5921C1439B009C406E /* InfoEx.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFB0E21C1439B009C406E /* InfoEx.plist */; };
-		55458E0F24C08B41009EC98A /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55458E0B24C08B34009EC98A /* QMUIKit.framework */; };
-		55458E1024C08B41009EC98A /* QMUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 55458E0B24C08B34009EC98A /* QMUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		55458E2424C08D14009EC98A /* testHpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55458E1A24C08D14009EC98A /* testHpp.cpp */; };
-		55458E2524C08D14009EC98A /* WWKActionBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 55458E1C24C08D14009EC98A /* WWKActionBar.m */; };
-		55458E2624C08D14009EC98A /* WWKSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 55458E1D24C08D14009EC98A /* WWKSegmentedControl.m */; };
-		55458E2724C08D14009EC98A /* UIViewController+LeftBarUnreadCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 55458E1F24C08D14009EC98A /* UIViewController+LeftBarUnreadCount.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		55458E0A24C08B34009EC98A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55458E0524C08B33009EC98A /* qmui.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FE0AFAD11D82B9D8000D21D9;
-			remoteInfo = QMUIKit;
-		};
-		55458E0C24C08B34009EC98A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55458E0524C08B33009EC98A /* qmui.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CD4EA571228C401E00A55066;
-			remoteInfo = QMUIKitTests;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		55458E1124C08B41009EC98A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				55458E1024C08B41009EC98A /* QMUIKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		2B0C8D832546A9CA00DAAF2D /* testhtml.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = testhtml.html; sourceTree = "<group>"; };
+		2B0C8DC22546ACCD00DAAF2D /* testhtmlEx.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = testhtmlEx.html; sourceTree = "<group>"; };
 		2B36298D24518953003F2F2A /* MyWorkerClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyWorkerClass.h; sourceTree = "<group>"; };
 		2B36298E24518953003F2F2A /* MyWorkerClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWorkerClass.m; sourceTree = "<group>"; };
 		2B4BA80A1FF0D6E300F002E7 /* TestObject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestObject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,7 +59,7 @@
 		2B56145921DA7DD400EC79B3 /* RAFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAFile.m; sourceTree = "<group>"; };
 		2B56145B21DA7E4400EC79B3 /* RADir.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RADir.h; sourceTree = "<group>"; };
 		2B56145C21DA7E4400EC79B3 /* RADir.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RADir.m; sourceTree = "<group>"; };
-		2BFEFAF721C1439A009C406E /* fengchiweiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fengchiweiViewController.h; sourceTree = "<group>"; };
+		2BFEFAF721C1439A009C406E /* UITestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITestViewController.h; sourceTree = "<group>"; };
 		2BFEFAFC21C1439A009C406E /* beijingUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beijingUp@2x.png"; sourceTree = "<group>"; };
 		2BFEFAFD21C1439A009C406E /* beijing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beijing@2x.png"; sourceTree = "<group>"; };
 		2BFEFAFE21C1439A009C406E /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
@@ -103,25 +70,14 @@
 		2BFEFB0321C1439B009C406E /* SoundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundView.m; sourceTree = "<group>"; };
 		2BFEFB0421C1439B009C406E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BFEFB0621C1439B009C406E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		2BFEFB0721C1439B009C406E /* rootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rootViewController.h; sourceTree = "<group>"; };
+		2BFEFB0721C1439B009C406E /* UIRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRootViewController.h; sourceTree = "<group>"; };
 		2BFEFB0821C1439B009C406E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2BFEFB0921C1439B009C406E /* msgTritone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = msgTritone.caf; sourceTree = "<group>"; };
 		2BFEFB0A21C1439B009C406E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2BFEFB0B21C1439B009C406E /* fengchiweiViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = fengchiweiViewController.mm; sourceTree = "<group>"; };
+		2BFEFB0B21C1439B009C406E /* UITestViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UITestViewController.mm; sourceTree = "<group>"; };
 		2BFEFB0C21C1439B009C406E /* SoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundView.h; sourceTree = "<group>"; };
-		2BFEFB0D21C1439B009C406E /* rootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = rootViewController.mm; sourceTree = "<group>"; };
+		2BFEFB0D21C1439B009C406E /* UIRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIRootViewController.m; sourceTree = "<group>"; };
 		2BFEFB0E21C1439B009C406E /* InfoEx.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InfoEx.plist; sourceTree = "<group>"; };
-		55458E0524C08B33009EC98A /* qmui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = qmui.xcodeproj; path = QMUI/qmui.xcodeproj; sourceTree = "<group>"; };
-		55458E1724C08D14009EC98A /* testOnlyHpp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = testOnlyHpp.hpp; sourceTree = "<group>"; };
-		55458E1824C08D14009EC98A /* testHpp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = testHpp.hpp; sourceTree = "<group>"; };
-		55458E1924C08D14009EC98A /* testCPPEleven.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = testCPPEleven.hpp; sourceTree = "<group>"; };
-		55458E1A24C08D14009EC98A /* testHpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testHpp.cpp; sourceTree = "<group>"; };
-		55458E1C24C08D14009EC98A /* WWKActionBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWKActionBar.m; sourceTree = "<group>"; };
-		55458E1D24C08D14009EC98A /* WWKSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWKSegmentedControl.m; sourceTree = "<group>"; };
-		55458E1F24C08D14009EC98A /* UIViewController+LeftBarUnreadCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LeftBarUnreadCount.m"; sourceTree = "<group>"; };
-		55458E2024C08D14009EC98A /* WWKActionBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWKActionBar.h; sourceTree = "<group>"; };
-		55458E2224C08D14009EC98A /* WWKSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWKSegmentedControl.h; sourceTree = "<group>"; };
-		55458E2324C08D14009EC98A /* UIViewController+LeftBarUnreadCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LeftBarUnreadCount.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +86,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B56144521DA78EA00EC79B3 /* libmp3lame.a in Frameworks */,
-				55458E0F24C08B41009EC98A /* QMUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,9 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				2BFEFAF621C1439A009C406E /* TestObject */,
-				55458E0E24C08B41009EC98A /* Frameworks */,
 				2B4BA80B1FF0D6E300F002E7 /* Products */,
-				55458E0524C08B33009EC98A /* qmui.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -189,24 +142,24 @@
 		2BFEFAF621C1439A009C406E /* TestObject */ = {
 			isa = PBXGroup;
 			children = (
-				55458E1624C08D14009EC98A /* CPPTest */,
-				55458E1B24C08D14009EC98A /* WWKView */,
 				2B56144221DA78EA00EC79B3 /* lame */,
 				2B56141221DA6C5100EC79B3 /* NewFileSys */,
 				2BFEFAFB21C1439A009C406E /* res */,
 				2BFEFB0221C1439B009C406E /* AppDelegate.h */,
-				2BFEFB0A21C1439B009C406E /* AppDelegate.m */,
-				2BFEFB0C21C1439B009C406E /* SoundView.h */,
 				2BFEFB0321C1439B009C406E /* SoundView.m */,
-				2BFEFB0721C1439B009C406E /* rootViewController.h */,
-				2BFEFB0D21C1439B009C406E /* rootViewController.mm */,
-				2BFEFAF721C1439A009C406E /* fengchiweiViewController.h */,
-				2BFEFB0B21C1439B009C406E /* fengchiweiViewController.mm */,
+				2BFEFB0421C1439B009C406E /* Assets.xcassets */,
+				2BFEFB0521C1439B009C406E /* LaunchScreen.storyboard */,
+				2BFEFB0721C1439B009C406E /* UIRootViewController.h */,
+				2BFEFB0D21C1439B009C406E /* UIRootViewController.m */,
+				2BFEFB0821C1439B009C406E /* main.m */,
 				2B36298D24518953003F2F2A /* MyWorkerClass.h */,
 				2B36298E24518953003F2F2A /* MyWorkerClass.m */,
+				2BFEFB0921C1439B009C406E /* msgTritone.caf */,
+				2BFEFB0A21C1439B009C406E /* AppDelegate.m */,
+				2BFEFAF721C1439A009C406E /* UITestViewController.h */,
+				2BFEFB0B21C1439B009C406E /* UITestViewController.mm */,
+				2BFEFB0C21C1439B009C406E /* SoundView.h */,
 				2BFEFB0E21C1439B009C406E /* InfoEx.plist */,
-				2BFEFB0521C1439B009C406E /* LaunchScreen.storyboard */,
-				2BFEFB0421C1439B009C406E /* Assets.xcassets */,
 			);
 			path = TestObject;
 			sourceTree = "<group>";
@@ -214,8 +167,8 @@
 		2BFEFAFB21C1439A009C406E /* res */ = {
 			isa = PBXGroup;
 			children = (
-				2BFEFB0921C1439B009C406E /* msgTritone.caf */,
-				2BFEFB0821C1439B009C406E /* main.m */,
+				2B0C8DC22546ACCD00DAAF2D /* testhtmlEx.html */,
+				2B0C8D832546A9CA00DAAF2D /* testhtml.html */,
 				2BFEFAFC21C1439A009C406E /* beijingUp@2x.png */,
 				2BFEFAFD21C1439A009C406E /* beijing@2x.png */,
 				2BFEFAFE21C1439A009C406E /* triangle.png */,
@@ -224,46 +177,6 @@
 				2BFEFB0121C1439A009C406E /* location_icon.png */,
 			);
 			path = res;
-			sourceTree = "<group>";
-		};
-		55458E0624C08B33009EC98A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				55458E0B24C08B34009EC98A /* QMUIKit.framework */,
-				55458E0D24C08B34009EC98A /* QMUIKitTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		55458E0E24C08B41009EC98A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		55458E1624C08D14009EC98A /* CPPTest */ = {
-			isa = PBXGroup;
-			children = (
-				55458E1724C08D14009EC98A /* testOnlyHpp.hpp */,
-				55458E1824C08D14009EC98A /* testHpp.hpp */,
-				55458E1924C08D14009EC98A /* testCPPEleven.hpp */,
-				55458E1A24C08D14009EC98A /* testHpp.cpp */,
-			);
-			path = CPPTest;
-			sourceTree = "<group>";
-		};
-		55458E1B24C08D14009EC98A /* WWKView */ = {
-			isa = PBXGroup;
-			children = (
-				55458E2024C08D14009EC98A /* WWKActionBar.h */,
-				55458E1C24C08D14009EC98A /* WWKActionBar.m */,
-				55458E2324C08D14009EC98A /* UIViewController+LeftBarUnreadCount.h */,
-				55458E1F24C08D14009EC98A /* UIViewController+LeftBarUnreadCount.m */,
-				55458E2224C08D14009EC98A /* WWKSegmentedControl.h */,
-				55458E1D24C08D14009EC98A /* WWKSegmentedControl.m */,
-			);
-			path = WWKView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,7 +189,6 @@
 				2B4BA8061FF0D6E300F002E7 /* Sources */,
 				2B4BA8071FF0D6E300F002E7 /* Frameworks */,
 				2B4BA8081FF0D6E300F002E7 /* Resources */,
-				55458E1124C08B41009EC98A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -313,35 +225,12 @@
 			mainGroup = 2B4BA8011FF0D6E300F002E7;
 			productRefGroup = 2B4BA80B1FF0D6E300F002E7 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 55458E0624C08B33009EC98A /* Products */;
-					ProjectRef = 55458E0524C08B33009EC98A /* qmui.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				2B4BA8091FF0D6E300F002E7 /* TestObject */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		55458E0B24C08B34009EC98A /* QMUIKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = QMUIKit.framework;
-			remoteRef = 55458E0A24C08B34009EC98A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		55458E0D24C08B34009EC98A /* QMUIKitTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = QMUIKitTests.xctest;
-			remoteRef = 55458E0C24C08B34009EC98A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2B4BA8081FF0D6E300F002E7 /* Resources */ = {
@@ -352,11 +241,13 @@
 				2BFEFB5321C1439B009C406E /* LaunchScreen.storyboard in Resources */,
 				2BFEFB4E21C1439B009C406E /* rect.png in Resources */,
 				2BFEFB5221C1439B009C406E /* Assets.xcassets in Resources */,
+				2B0C8DC32546ACCD00DAAF2D /* testhtmlEx.html in Resources */,
 				2B56143021DA6C5100EC79B3 /* IRAFileSystem.djinni in Resources */,
 				2BFEFB4D21C1439B009C406E /* triangle.png in Resources */,
 				2BFEFB5521C1439B009C406E /* msgTritone.caf in Resources */,
 				2BFEFB5921C1439B009C406E /* InfoEx.plist in Resources */,
 				2B56142F21DA6C5100EC79B3 /* IRAFile.djinni in Resources */,
+				2B0C8D842546A9CA00DAAF2D /* testhtml.html in Resources */,
 				2BFEFB5021C1439B009C406E /* location_icon.png in Resources */,
 				2BFEFB4C21C1439B009C406E /* beijing@2x.png in Resources */,
 				2BFEFB4F21C1439B009C406E /* beijingDown@2x.png in Resources */,
@@ -373,18 +264,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B36298F24518953003F2F2A /* MyWorkerClass.m in Sources */,
-				55458E2524C08D14009EC98A /* WWKActionBar.m in Sources */,
 				2B56143E21DA6EAC00EC79B3 /* RAFileService.m in Sources */,
-				55458E2624C08D14009EC98A /* WWKSegmentedControl.m in Sources */,
-				2BFEFB5821C1439B009C406E /* rootViewController.mm in Sources */,
+				2BFEFB5821C1439B009C406E /* UIRootViewController.m in Sources */,
 				2B56145D21DA7E4400EC79B3 /* RADir.m in Sources */,
-				55458E2424C08D14009EC98A /* testHpp.cpp in Sources */,
 				2BFEFB5121C1439B009C406E /* SoundView.m in Sources */,
-				2BFEFB5721C1439B009C406E /* fengchiweiViewController.mm in Sources */,
+				2BFEFB5721C1439B009C406E /* UITestViewController.mm in Sources */,
 				2B56145A21DA7DD400EC79B3 /* RAFile.m in Sources */,
 				2BFEFB5421C1439B009C406E /* main.m in Sources */,
 				2BFEFB5621C1439B009C406E /* AppDelegate.m in Sources */,
-				55458E2724C08D14009EC98A /* UIViewController+LeftBarUnreadCount.m in Sources */,
 				2B56143B21DA6DDB00EC79B3 /* RALocalFileSystem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,7 +404,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/CocoaHotReload",
+					"$(PROJECT_DIR)/CocoaHotReload",
 				);
 				INFOPLIST_FILE = TestObject/InfoEx.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -548,7 +435,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/CocoaHotReload",
+					"$(PROJECT_DIR)/CocoaHotReload",
 				);
 				INFOPLIST_FILE = TestObject/InfoEx.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
