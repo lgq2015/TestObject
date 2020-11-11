@@ -32,6 +32,7 @@
 		2BFEFB5721C1439B009C406E /* UITestViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BFEFB0B21C1439B009C406E /* UITestViewController.mm */; };
 		2BFEFB5821C1439B009C406E /* UIRootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BFEFB0D21C1439B009C406E /* UIRootViewController.mm */; };
 		2BFEFB5921C1439B009C406E /* InfoEx.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFB0E21C1439B009C406E /* InfoEx.plist */; };
+		3063B447255C0D96006654AE /* UITextCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3063B446255C0D96006654AE /* UITextCheckViewController.m */; };
 		55458E0F24C08B41009EC98A /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55458E0B24C08B34009EC98A /* QMUIKit.framework */; };
 		55458E1024C08B41009EC98A /* QMUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 55458E0B24C08B34009EC98A /* QMUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55458E2424C08D14009EC98A /* testHpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55458E1A24C08D14009EC98A /* testHpp.cpp */; };
@@ -111,6 +112,8 @@
 		2BFEFB0C21C1439B009C406E /* SoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundView.h; sourceTree = "<group>"; };
 		2BFEFB0D21C1439B009C406E /* UIRootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIRootViewController.mm; sourceTree = "<group>"; };
 		2BFEFB0E21C1439B009C406E /* InfoEx.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InfoEx.plist; sourceTree = "<group>"; };
+		3063B443255C0D96006654AE /* UITextCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextCheckViewController.h; sourceTree = "<group>"; };
+		3063B446255C0D96006654AE /* UITextCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextCheckViewController.m; sourceTree = "<group>"; };
 		55458E0524C08B33009EC98A /* qmui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = qmui.xcodeproj; path = QMUI/qmui.xcodeproj; sourceTree = "<group>"; };
 		55458E1724C08D14009EC98A /* testOnlyHpp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = testOnlyHpp.hpp; sourceTree = "<group>"; };
 		55458E1824C08D14009EC98A /* testHpp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = testHpp.hpp; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 				2BFEFB0D21C1439B009C406E /* UIRootViewController.mm */,
 				2BFEFAF721C1439A009C406E /* UITestViewController.h */,
 				2BFEFB0B21C1439B009C406E /* UITestViewController.mm */,
+				3063B443255C0D96006654AE /* UITextCheckViewController.h */,
+				3063B446255C0D96006654AE /* UITextCheckViewController.m */,
 				2B36298D24518953003F2F2A /* MyWorkerClass.h */,
 				2B36298E24518953003F2F2A /* MyWorkerClass.m */,
 				2BFEFB0E21C1439B009C406E /* InfoEx.plist */,
@@ -380,6 +385,7 @@
 				2B56145D21DA7E4400EC79B3 /* RADir.m in Sources */,
 				55458E2424C08D14009EC98A /* testHpp.cpp in Sources */,
 				2BFEFB5121C1439B009C406E /* SoundView.m in Sources */,
+				3063B447255C0D96006654AE /* UITextCheckViewController.m in Sources */,
 				2BFEFB5721C1439B009C406E /* UITestViewController.mm in Sources */,
 				2B56145A21DA7DD400EC79B3 /* RAFile.m in Sources */,
 				2BFEFB5421C1439B009C406E /* main.m in Sources */,
@@ -557,6 +563,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/TestObject/lame",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fengchiwei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
