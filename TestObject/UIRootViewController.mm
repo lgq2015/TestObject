@@ -102,6 +102,21 @@
 
     //定时器设置
     //[NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(action:) userInfo:nil repeats:YES];
+    
+    NSString *animationKey = @"backgroundColorggg";
+    NSTimeInterval duration = 0.2;
+    NSInteger repeatCount = 1;
+    UIColor *originColor = [UIColor clearColor];
+    UIColor *waverColor = [UIColor yellowColor];
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"backgroundColor"];
+    animation.duration = duration;
+    animation.fromValue = (__bridge id _Nullable)(originColor.CGColor);
+    animation.toValue = (__bridge id _Nullable)(waverColor.CGColor);
+    animation.fillMode = kCAFillModeForwards;
+    animation.removedOnCompletion = YES;
+    animation.autoreverses = YES;
+    animation.repeatCount = repeatCount;
+    [self.view.layer addAnimation:animation forKey:animationKey];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -109,6 +124,8 @@
     [super viewWillAppear:animated];
     self.title = @"rootVC-1";
 }
+
+
 
 - (void)btnClick
 {

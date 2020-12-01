@@ -10,6 +10,7 @@
 #import "UITestViewController.h"
 #import "UIRootViewController.h"
 #import "SoundView.h"
+#import "ViewController4.h"
 #if DEBUG
 #import <CocoaHotReload/CocoaHotReload.h>
 #endif
