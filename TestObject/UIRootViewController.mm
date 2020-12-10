@@ -8,7 +8,6 @@
 
 #import "UIRootViewController.h"
 #import "UITestViewController.h"
-#import "RALocalFileSystem.h"
 #import "MyWorkerClass.h"
 #include "testHpp.hpp"
 #include "testCPPEleven.hpp"
