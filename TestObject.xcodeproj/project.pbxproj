@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2B36298F24518953003F2F2A /* MyWorkerClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B36298E24518953003F2F2A /* MyWorkerClass.m */; };
 		2B56144521DA78EA00EC79B3 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B56144321DA78EA00EC79B3 /* libmp3lame.a */; };
+		2B88C8E1258A4689006199E6 /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B88C8D9258A458C006199E6 /* QMUIKit.framework */; };
+		2B88C8E2258A4689006199E6 /* QMUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B88C8D9258A458C006199E6 /* QMUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2BA72695258266F900586F5F /* WWKEasyTableSectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7268D258266F900586F5F /* WWKEasyTableSectionItem.m */; };
 		2BA72696258266F900586F5F /* WWKEasyTableCategory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BA72690258266F900586F5F /* WWKEasyTableCategory.mm */; };
 		2BA72697258266F900586F5F /* WWKEasyTableItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA72691258266F900586F5F /* WWKEasyTableItem.m */; };
@@ -64,6 +66,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2B88C8E2258A4689006199E6 /* QMUIKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B88C8E1258A4689006199E6 /* QMUIKit.framework in Frameworks */,
 				2B56144521DA78EA00EC79B3 /* libmp3lame.a in Frameworks */,
 				80BB3C1C45452D662A954207 /* libPods-TestObject.a in Frameworks */,
 			);
