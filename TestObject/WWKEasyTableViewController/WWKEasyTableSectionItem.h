@@ -2,13 +2,13 @@
 //  WWKEasyTableSectionItem.h
 //  WWKEasyTableView
 //
-//  Created by wyman on 2019/4/28.
-//  Copyright © 2019 wyman. All rights reserved.
+//  Created by maxcwfeng on 2020/8/28.
+//  Copyright © 2020 maxcwfeng. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "WWKEasyTableItem.h"
-#import "WWKEasyTable.h"
+#import "WWKEasyTableCategory.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

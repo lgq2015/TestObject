@@ -2,12 +2,14 @@
 //  WWKEasyTableItem.m
 //  WWKEasyTableView
 //
-//  Created by wyman on 2019/4/24.
-//  Copyright © 2019 wyman. All rights reserved.
+//  Created by maxcwfeng on 2020/8/24.
+//  Copyright © 2020 maxcwfeng. All rights reserved.
 //
 
 #import "WWKEasyTableItem.h"
-#import "WWKEasyTable.h"
+#import "WWKEasyTableCategory.h"
+#import <QMUIKit/QMUIKit.h>
+
 
 @interface WWKEasyTableItem()
 
@@ -125,7 +127,7 @@
         return _cornerStyle;
     }
     
-    QMUITableViewCellPosition postion = [self.tableView qmui_positionForRowAtIndexPath:self.indexPath];
+    QMUITableViewCellPosition postion = (QMUITableViewCellPosition)[self.tableView qmui_positionForRowAtIndexPath:self.indexPath];
     UIRectCorner cornerStyle = 0;
     
     if (postion == QMUITableViewCellPositionSingleInSection) {
@@ -387,33 +389,18 @@
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    if (UIEdgeInsetsEqualToEdgeInsets(self.textItem.contentInset, UIEdgeInsetsZero)) {
-        CGFloat textW = size.width - self.textItem.leftOffset - self.textItem.rightOffset;
-        CGFloat textH = 0;
-        if (self.textLbl.attributedText) {
-           textH = [self.textLbl.attributedText easy_attributeStringGetHeightWithMaxWidth:textW];
-        } else {
-           textH = [self.textLbl.text easy_getHeightWithMaxWidth:textW font:self.textLbl.font];
-        }
-        if (self.textItem) {
-            self.textLbl.frame = CGRectMake(self.textItem.leftOffset, 0, textW, textH);
-        }
-
-        return CGSizeMake(size.width, textH);
+    CGFloat textW = size.width - self.textItem.contentInset.left - self.textItem.contentInset.right;
+    CGFloat textH = 0;
+    if (self.textLbl.attributedText) {
+       textH = [self.textLbl.attributedText easy_attributeStringGetHeightWithMaxWidth:textW];
     } else {
-        CGFloat textW = size.width - self.textItem.contentInset.left - self.textItem.contentInset.right;
-        CGFloat textH = 0;
-        if (self.textLbl.attributedText) {
-           textH = [self.textLbl.attributedText easy_attributeStringGetHeightWithMaxWidth:textW];
-        } else {
-           textH = [self.textLbl.text easy_getHeightWithMaxWidth:textW font:self.textLbl.font];
-        }
-        if (self.textItem) {
-            self.textLbl.frame = CGRectMake(self.textItem.contentInset.left, self.textItem.contentInset.top, textW, textH);
-        }
-        
-        return CGSizeMake(size.width, self.textItem.contentInset.top+textH+self.textItem.contentInset.bottom);
+       textH = [self.textLbl.text easy_getHeightWithMaxWidth:textW font:self.textLbl.font];
     }
+    if (self.textItem) {
+        self.textLbl.frame = CGRectMake(self.textItem.contentInset.left, self.textItem.contentInset.top, textW, textH);
+    }
+    
+    return CGSizeMake(size.width, self.textItem.contentInset.top+textH+self.textItem.contentInset.bottom);
 }
 
 @end
@@ -462,15 +449,14 @@
     return self;
 }
 
-+ (instancetype)itemWithCellConfig:(WWKEasyTableTextConfigCellBlock)cellConfig {
++ (instancetype)itemWithCellConfig:(WWKEasyTableConfigCellBlock)cellConfig {
     return [WWKEasyTableTextItem itemWithLeftOffset:12 rightOffset:12 lineHeight:18 cellConfig:cellConfig];
 }
 
-+ (instancetype)itemWithLeftOffset:(CGFloat)leftOffset rightOffset:(CGFloat)rightOffset lineHeight:(CGFloat)lineHeight cellConfig:(WWKEasyTableTextConfigCellBlock)cellConfig {
++ (instancetype)itemWithLeftOffset:(CGFloat)leftOffset rightOffset:(CGFloat)rightOffset lineHeight:(CGFloat)lineHeight cellConfig:(WWKEasyTableConfigCellBlock)cellConfig {
     WWKEasyTableTextItem *textItem = [WWKEasyTableTextItem new];
     textItem.cellClass = WWKEasyTableTextCell.class;
-    textItem.leftOffset = leftOffset;
-    textItem.rightOffset = rightOffset;
+    textItem.contentInset = UIEdgeInsetsMake(0, leftOffset, 0, rightOffset);
     textItem.lineHeight = lineHeight;
     textItem.autoCalculateHeight = YES;
     textItem.configCellBlock = ^(__kindof WWKEasyTableTextCell * _Nonnull cell, __kindof WWKEasyTableTextItem * _Nonnull item) {
@@ -555,43 +541,6 @@
         cell.si = ii.imgSize;
     };
     return item;
-}
-
-
-@end
-
-/////////////////////////////////////// 废弃属性/方法
-
-@implementation WWKEasyTableItem(Deprecated)
-
-- (void)updateCell {
-    if (self.configCellBlock) {
-        self.configCellBlock(self.cell, self);
-    }
-    // 因为改变颜色需要强制渲染，但是在didSelectCell 有animate的模式，会导致又被渲染回去，实际上apple需要在displayCell进行处理。所以需要触发reloadCell
-    [self.cell setNeedsFocusUpdate];
-    [self.cell updateFocusIfNeeded];
-}
-
-
-- (void)layoutCell {
-    [UIView performWithoutAnimation:^{
-        [self.tableView beginUpdates];
-        [self.tableView endUpdates];
-    }];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.02 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"WWKEasyTableItemLayout" object:self.tableView];
-    });
-}
-
-- (void)layoutCellAnimated {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView beginUpdates];
-        [self.tableView endUpdates];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ // 因为有动画所以延时时间更久
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"WWKEasyTableItemLayout" object:self.tableView];
-        });
-    });
 }
 
 

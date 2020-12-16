@@ -2,8 +2,8 @@
 //  WWKEasyTableItem.h
 //  WWKEasyTableView
 //
-//  Created by wyman on 2019/4/24.
-//  Copyright © 2019 wyman. All rights reserved.
+//  Created by maxcwfeng on 2020/8/24.
+//  Copyright © 2020 maxcwfeng. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -34,6 +34,7 @@ typedef NS_OPTIONS(NSUInteger, WWKEasyTableUpdateType) {
 typedef void(^WWKEasyTableConfigCellBlock)(__kindof UITableViewCell *cell, __kindof WWKEasyTableItem *item);
 typedef CGFloat(^WWKEasyTableConfigHeightBlock)(__kindof WWKEasyTableItem *item);
 
+//------------------------------------------------------------
 @interface WWKEasyTableItem<T : NSObject *> : NSObject
 
 /** 上下文对象 */
@@ -124,21 +125,13 @@ typedef CGFloat(^WWKEasyTableConfigHeightBlock)(__kindof WWKEasyTableItem *item)
 
 @end
 
+//------------------------------------------------------------
 //// 关闭重并且自动计算高度
 @interface WWKEasyTableAutoCalAndNotReusedItem : WWKEasyTableItem
 
 @end
 
-@interface WWKEasyTableGroupItem : WWKEasyTableItem
-
-- (void)addItems:(NSArray<WWKEasyTableItem *>*)items;
-- (void)addItem:(WWKEasyTableItem *)item;
-- (void)removeItem:(WWKEasyTableItem *)item;
-- (void)removeItems:(NSArray<WWKEasyTableItem *>*)items;
-- (NSArray<WWKEasyTableItem *> *)getItems;
-
-@end
-
+//------------------------------------------------------------
 //// 空白item
 @interface WWKEasyTableBlankItem : WWKEasyTableItem
 
@@ -147,6 +140,15 @@ typedef CGFloat(^WWKEasyTableConfigHeightBlock)(__kindof WWKEasyTableItem *item)
 @property (nonatomic, assign) BOOL fixedSpace;
 @end
 
+//// 空白cell快捷创建
+#define WWKEasyBlank(height)  ([WWKEasyTableBlankItem itemWithHeight:height])
+#define WWKEasyBlankColor(height, color)  ({\
+WWKEasyTableBlankItem *_blank_item_ = [WWKEasyTableBlankItem itemWithHeight:height];\
+_blank_item_.backgroundColor = color;\
+_blank_item_;\
+})
+
+//------------------------------------------------------------
 //// 文本item
 @class WWKEasyTableTextCell, WWKEasyTableTextItem;
 
@@ -158,6 +160,7 @@ typedef CGFloat(^WWKEasyTableConfigHeightBlock)(__kindof WWKEasyTableItem *item)
 
 @end
 
+//------------------------------------------------------------
 @interface WWKEasyTableTextItem : WWKEasyTableItem
 
 /** 文本 */
@@ -171,6 +174,15 @@ typedef CGFloat(^WWKEasyTableConfigHeightBlock)(__kindof WWKEasyTableItem *item)
 
 @end
 
+//快捷创建
+#define WWKEasyText(_text)  ({\
+WWKEasyTableTextItem *_text_easy_item = [WWKEasyTableTextItem itemWithCellConfig:^(__kindof WWKEasyTableTextCell * _Nonnull cell, __kindof WWKEasyTableTextItem * _Nonnull item) { \
+    cell.textLbl.text = _text; \
+}]; \
+_text_easy_item;\
+})
+
+//------------------------------------------------------------
 //// 分割线cell
 #define WWKEasySeperate(left, right)  ([WWKEasyTableSeperateItem itemWithLeftOffset:left rightOffset:right])
 @interface WWKEasyTableSeperateCell : UITableViewCell
@@ -195,10 +207,12 @@ typedef CGFloat(^WWKEasyTableConfigHeightBlock)(__kindof WWKEasyTableItem *item)
 
 @end
 
+//------------------------------------------------------------
 ////  图片
 @interface WWKEasyTableImageCell : UITableViewCell
 @property (nonatomic, strong) UIImageView *imgView;
 @end
+
 @class WWKEasyTableImageItem;
 typedef void(^WWKEasyTableImageConfigCellBlock)(__kindof WWKEasyTableImageCell *cell, __kindof WWKEasyTableImageItem *item);
 @interface WWKEasyTableImageItem : WWKEasyTableItem
@@ -210,54 +224,17 @@ typedef void(^WWKEasyTableImageConfigCellBlock)(__kindof WWKEasyTableImageCell *
 
 @end
 
-/////////////////////////////////////// 废弃属性/方法
+//------------------------------------------------------------
+//// 包装器，就是优化代码逻辑，不能直接设置到DataSouce里面
+@interface WWKEasyTableGroupItem : WWKEasyTableItem
 
-@interface WWKEasyTableItem(Deprecated)
-
-/** 当前控制器 */
-@property (nonatomic, weak) NSObject *eventObserver WWKEasyDeprecated("此属性作废");
-
-/** 是否关闭cell复用，默认是NO */
-@property (nonatomic, assign, getter = isCloseReused) BOOL closeReused WWKEasyDeprecated("已过期，请使用 disableCellReused");
-
-/** 是否关闭cellCache，默认是NO */
-@property (nonatomic, assign, getter = isCloseCellCache) BOOL closeCellCache WWKEasyDeprecated("已过期，请使用 disableCellHeightCache");
-
-/** 触发configCellBlock */
-- (void)updateCell WWKEasyDeprecated("此方法作废， 请使用 - (void)updateCell:");
-
-/** 触发tableview刷新高度并且不隐藏键盘 */
-- (void)layoutCell WWKEasyDeprecated("此方法作废， 请使用 - (void)updateCell:");
-- (void)layoutCellAnimated WWKEasyDeprecated("此方法作废， 请使用 - (void)updateCell:");
+- (void)addItems:(NSArray<WWKEasyTableItem *>*)items;
+- (void)addItem:(WWKEasyTableItem *)item;
+- (void)removeItem:(WWKEasyTableItem *)item;
+- (void)removeItems:(NSArray<WWKEasyTableItem *>*)items;
+- (NSArray<WWKEasyTableItem *> *)getItems;
 
 @end
-
-#define WWKEasyText(_text)  ({\
-WWKEasyTableTextItem *_text_easy_item = [WWKEasyTableTextItem itemWithCellConfig:^(__kindof WWKEasyTableTextCell * _Nonnull cell, __kindof WWKEasyTableTextItem * _Nonnull item) { \
-    cell.textLbl.text = _text; \
-}]; \
-_text_easy_item;\
-})
-typedef void(^WWKEasyTableTextConfigCellBlock)(__kindof WWKEasyTableTextCell *cell, __kindof WWKEasyTableTextItem *item);
-@interface WWKEasyTableTextItem()
-
-+ (instancetype)itemWithCellConfig:(WWKEasyTableTextConfigCellBlock)cellConfig WWKEasyDeprecated("此方法作废， 请使用 configCellBlock");
-
-+ (instancetype)itemWithLeftOffset:(CGFloat)leftOffset rightOffset:(CGFloat)rightOffset lineHeight:(CGFloat)lineHeight cellConfig:(WWKEasyTableTextConfigCellBlock)cellConfig WWKEasyDeprecated("此方法作废， 请使用 contentInset 和 configCellBlock");
-
-@property (nonatomic, assign) CGFloat leftOffset WWKEasyDeprecated("此方法作废， 请使用 contentInset");
-
-@property (nonatomic, assign) CGFloat rightOffset WWKEasyDeprecated("此方法作废， 请使用 contentInset");
-
-@end
-
-//// 空白cell
-#define WWKEasyBlank(height)  ([WWKEasyTableBlankItem itemWithHeight:height])
-#define WWKEasyBlankColor(height, color)  ({\
-WWKEasyTableBlankItem *_blank_item_ = [WWKEasyTableBlankItem itemWithHeight:height];\
-_blank_item_.backgroundColor = color;\
-_blank_item_;\
-})
 
 
 NS_ASSUME_NONNULL_END

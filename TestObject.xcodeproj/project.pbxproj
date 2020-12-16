@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		2B36298F24518953003F2F2A /* MyWorkerClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B36298E24518953003F2F2A /* MyWorkerClass.m */; };
 		2B56144521DA78EA00EC79B3 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B56144321DA78EA00EC79B3 /* libmp3lame.a */; };
+		2BA72695258266F900586F5F /* WWKEasyTableSectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7268D258266F900586F5F /* WWKEasyTableSectionItem.m */; };
+		2BA72696258266F900586F5F /* WWKEasyTableCategory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BA72690258266F900586F5F /* WWKEasyTableCategory.mm */; };
+		2BA72697258266F900586F5F /* WWKEasyTableItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA72691258266F900586F5F /* WWKEasyTableItem.m */; };
+		2BA72698258266F900586F5F /* WWKEasyTableViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BA72694258266F900586F5F /* WWKEasyTableViewController.mm */; };
+		2BA726B125830F2E00586F5F /* KSTemplateViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7269F25830F2E00586F5F /* KSTemplateViewModel.m */; };
+		2BA726B625830F2E00586F5F /* KSTemplateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA726AB25830F2E00586F5F /* KSTemplateTableViewCell.m */; };
+		2BA726B725830F2E00586F5F /* KSTemplateListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA726AE25830F2E00586F5F /* KSTemplateListViewController.m */; };
+		2BA726BA2583120800586F5F /* KSTemplateListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA726B82583120800586F5F /* KSTemplateListItem.m */; };
 		2BFEFB4B21C1439B009C406E /* beijingUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFAFC21C1439A009C406E /* beijingUp@2x.png */; };
 		2BFEFB4C21C1439B009C406E /* beijing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFAFD21C1439A009C406E /* beijing@2x.png */; };
 		2BFEFB4D21C1439B009C406E /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFAFE21C1439A009C406E /* triangle.png */; };
@@ -28,23 +36,21 @@
 		3071CD5C25621D0C008960D8 /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 3071CD5425621D0B008960D8 /* ViewController3.m */; };
 		3071CD5D25621D0C008960D8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3071CD5525621D0B008960D8 /* ViewController.m */; };
 		3071CD5E25621D0C008960D8 /* ViewController4.m in Sources */ = {isa = PBXBuildFile; fileRef = 3071CD5625621D0B008960D8 /* ViewController4.m */; };
-		55458E0F24C08B41009EC98A /* QMUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55458E0B24C08B34009EC98A /* QMUIKit.framework */; };
-		55458E1024C08B41009EC98A /* QMUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 55458E0B24C08B34009EC98A /* QMUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55458E2424C08D14009EC98A /* testHpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55458E1A24C08D14009EC98A /* testHpp.cpp */; };
 		80BB3C1C45452D662A954207 /* libPods-TestObject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E712F1CE3133695B269FECBF /* libPods-TestObject.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		55458E0A24C08B34009EC98A /* PBXContainerItemProxy */ = {
+		2B88C8D8258A458C006199E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 55458E0524C08B33009EC98A /* qmui.xcodeproj */;
+			containerPortal = 2B88C8D3258A458C006199E6 /* qmui.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = FE0AFAD11D82B9D8000D21D9;
 			remoteInfo = QMUIKit;
 		};
-		55458E0C24C08B34009EC98A /* PBXContainerItemProxy */ = {
+		2B88C8DA258A458C006199E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 55458E0524C08B33009EC98A /* qmui.xcodeproj */;
+			containerPortal = 2B88C8D3258A458C006199E6 /* qmui.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CD4EA571228C401E00A55066;
 			remoteInfo = QMUIKitTests;
@@ -58,7 +64,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				55458E1024C08B41009EC98A /* QMUIKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,6 +78,23 @@
 		2B4BA80A1FF0D6E300F002E7 /* TestObject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestObject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B56144321DA78EA00EC79B3 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
 		2B56144421DA78EA00EC79B3 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
+		2B88C8D3258A458C006199E6 /* qmui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = qmui.xcodeproj; path = QMUI/qmui.xcodeproj; sourceTree = SOURCE_ROOT; };
+		2BA7268D258266F900586F5F /* WWKEasyTableSectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWKEasyTableSectionItem.m; sourceTree = "<group>"; };
+		2BA7268E258266F900586F5F /* WWKEasyTableItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWKEasyTableItem.h; sourceTree = "<group>"; };
+		2BA7268F258266F900586F5F /* WWKEasyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWKEasyTableViewController.h; sourceTree = "<group>"; };
+		2BA72690258266F900586F5F /* WWKEasyTableCategory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WWKEasyTableCategory.mm; sourceTree = "<group>"; };
+		2BA72691258266F900586F5F /* WWKEasyTableItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWKEasyTableItem.m; sourceTree = "<group>"; };
+		2BA72692258266F900586F5F /* WWKEasyTableSectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWKEasyTableSectionItem.h; sourceTree = "<group>"; };
+		2BA72693258266F900586F5F /* WWKEasyTableCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWKEasyTableCategory.h; sourceTree = "<group>"; };
+		2BA72694258266F900586F5F /* WWKEasyTableViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WWKEasyTableViewController.mm; sourceTree = "<group>"; };
+		2BA7269E25830F2E00586F5F /* KSTemplateViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSTemplateViewModel.h; sourceTree = "<group>"; };
+		2BA7269F25830F2E00586F5F /* KSTemplateViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSTemplateViewModel.m; sourceTree = "<group>"; };
+		2BA726AB25830F2E00586F5F /* KSTemplateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSTemplateTableViewCell.m; sourceTree = "<group>"; };
+		2BA726AC25830F2E00586F5F /* KSTemplateListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSTemplateListViewController.h; sourceTree = "<group>"; };
+		2BA726AD25830F2E00586F5F /* KSTemplateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSTemplateTableViewCell.h; sourceTree = "<group>"; };
+		2BA726AE25830F2E00586F5F /* KSTemplateListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSTemplateListViewController.m; sourceTree = "<group>"; };
+		2BA726B82583120800586F5F /* KSTemplateListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSTemplateListItem.m; sourceTree = "<group>"; };
+		2BA726B92583120800586F5F /* KSTemplateListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSTemplateListItem.h; sourceTree = "<group>"; };
 		2BFEFAF721C1439A009C406E /* UITestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITestViewController.h; sourceTree = "<group>"; };
 		2BFEFAFC21C1439A009C406E /* beijingUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beijingUp@2x.png"; sourceTree = "<group>"; };
 		2BFEFAFD21C1439A009C406E /* beijing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beijing@2x.png"; sourceTree = "<group>"; };
@@ -100,7 +122,6 @@
 		3071CD5725621D0B008960D8 /* ViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController3.h; sourceTree = "<group>"; };
 		3071CD5925621D0B008960D8 /* ViewController4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController4.h; sourceTree = "<group>"; };
 		3071CD5A25621D0B008960D8 /* ViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
-		55458E0524C08B33009EC98A /* qmui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = qmui.xcodeproj; path = QMUI/qmui.xcodeproj; sourceTree = "<group>"; };
 		55458E1724C08D14009EC98A /* testOnlyHpp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = testOnlyHpp.hpp; sourceTree = "<group>"; };
 		55458E1824C08D14009EC98A /* testHpp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = testHpp.hpp; sourceTree = "<group>"; };
 		55458E1924C08D14009EC98A /* testCPPEleven.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = testCPPEleven.hpp; sourceTree = "<group>"; };
@@ -114,7 +135,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B56144521DA78EA00EC79B3 /* libmp3lame.a in Frameworks */,
-				55458E0F24C08B41009EC98A /* QMUIKit.framework in Frameworks */,
 				80BB3C1C45452D662A954207 /* libPods-TestObject.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -125,7 +145,6 @@
 		2B4BA8011FF0D6E300F002E7 = {
 			isa = PBXGroup;
 			children = (
-				55458E0524C08B33009EC98A /* qmui.xcodeproj */,
 				2BFEFAF621C1439A009C406E /* TestObject */,
 				55458E0E24C08B41009EC98A /* Frameworks */,
 				2B4BA80B1FF0D6E300F002E7 /* Products */,
@@ -150,9 +169,74 @@
 			path = lame;
 			sourceTree = "<group>";
 		};
+		2B88C8D4258A458C006199E6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B88C8D9258A458C006199E6 /* QMUIKit.framework */,
+				2B88C8DB258A458C006199E6 /* QMUIKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2BA7268C258266F900586F5F /* WWKEasyTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2BA72692258266F900586F5F /* WWKEasyTableSectionItem.h */,
+				2BA7268D258266F900586F5F /* WWKEasyTableSectionItem.m */,
+				2BA7268E258266F900586F5F /* WWKEasyTableItem.h */,
+				2BA72691258266F900586F5F /* WWKEasyTableItem.m */,
+				2BA7268F258266F900586F5F /* WWKEasyTableViewController.h */,
+				2BA72694258266F900586F5F /* WWKEasyTableViewController.mm */,
+				2BA72693258266F900586F5F /* WWKEasyTableCategory.h */,
+				2BA72690258266F900586F5F /* WWKEasyTableCategory.mm */,
+				2BA7269C25830F2E00586F5F /* TestEasyTableViewController */,
+			);
+			path = WWKEasyTableViewController;
+			sourceTree = "<group>";
+		};
+		2BA7269C25830F2E00586F5F /* TestEasyTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2BA7269D25830F2E00586F5F /* ViewModel */,
+				2BA726A525830F2E00586F5F /* Model */,
+				2BA726AA25830F2E00586F5F /* View */,
+			);
+			path = TestEasyTableViewController;
+			sourceTree = "<group>";
+		};
+		2BA7269D25830F2E00586F5F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2BA7269E25830F2E00586F5F /* KSTemplateViewModel.h */,
+				2BA7269F25830F2E00586F5F /* KSTemplateViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2BA726A525830F2E00586F5F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2BA726B92583120800586F5F /* KSTemplateListItem.h */,
+				2BA726B82583120800586F5F /* KSTemplateListItem.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2BA726AA25830F2E00586F5F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2BA726AD25830F2E00586F5F /* KSTemplateTableViewCell.h */,
+				2BA726AB25830F2E00586F5F /* KSTemplateTableViewCell.m */,
+				2BA726AC25830F2E00586F5F /* KSTemplateListViewController.h */,
+				2BA726AE25830F2E00586F5F /* KSTemplateListViewController.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		2BFEFAF621C1439A009C406E /* TestObject */ = {
 			isa = PBXGroup;
 			children = (
+				2B88C8D3258A458C006199E6 /* qmui.xcodeproj */,
 				2BFEFB0221C1439B009C406E /* AppDelegate.h */,
 				2BFEFB0A21C1439B009C406E /* AppDelegate.m */,
 				2BFEFB0C21C1439B009C406E /* SoundView.h */,
@@ -176,6 +260,7 @@
 				2BFEFB0421C1439B009C406E /* Assets.xcassets */,
 				55458E1624C08D14009EC98A /* CPPTest */,
 				2B56144221DA78EA00EC79B3 /* lame */,
+				2BA7268C258266F900586F5F /* WWKEasyTableViewController */,
 				2BFEFAFB21C1439A009C406E /* res */,
 			);
 			path = TestObject;
@@ -194,15 +279,6 @@
 				2BFEFB0121C1439A009C406E /* location_icon.png */,
 			);
 			path = res;
-			sourceTree = "<group>";
-		};
-		55458E0624C08B33009EC98A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				55458E0B24C08B34009EC98A /* QMUIKit.framework */,
-				55458E0D24C08B34009EC98A /* QMUIKitTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		55458E0E24C08B41009EC98A /* Frameworks */ = {
@@ -284,8 +360,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 55458E0624C08B33009EC98A /* Products */;
-					ProjectRef = 55458E0524C08B33009EC98A /* qmui.xcodeproj */;
+					ProductGroup = 2B88C8D4258A458C006199E6 /* Products */;
+					ProjectRef = 2B88C8D3258A458C006199E6 /* qmui.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -296,18 +372,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		55458E0B24C08B34009EC98A /* QMUIKit.framework */ = {
+		2B88C8D9258A458C006199E6 /* QMUIKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = QMUIKit.framework;
-			remoteRef = 55458E0A24C08B34009EC98A /* PBXContainerItemProxy */;
+			remoteRef = 2B88C8D8258A458C006199E6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		55458E0D24C08B34009EC98A /* QMUIKitTests.xctest */ = {
+		2B88C8DB258A458C006199E6 /* QMUIKitTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = QMUIKitTests.xctest;
-			remoteRef = 55458E0C24C08B34009EC98A /* PBXContainerItemProxy */;
+			remoteRef = 2B88C8DA258A458C006199E6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -382,15 +458,23 @@
 			files = (
 				3071CD5D25621D0C008960D8 /* ViewController.m in Sources */,
 				3071CD5E25621D0C008960D8 /* ViewController4.m in Sources */,
+				2BA72696258266F900586F5F /* WWKEasyTableCategory.mm in Sources */,
 				2B36298F24518953003F2F2A /* MyWorkerClass.m in Sources */,
 				2BFEFB5821C1439B009C406E /* UIRootViewController.mm in Sources */,
+				2BA72698258266F900586F5F /* WWKEasyTableViewController.mm in Sources */,
+				2BA726B125830F2E00586F5F /* KSTemplateViewModel.m in Sources */,
 				55458E2424C08D14009EC98A /* testHpp.cpp in Sources */,
 				2BFEFB5121C1439B009C406E /* SoundView.m in Sources */,
 				2BFEFB5721C1439B009C406E /* UITestViewController.mm in Sources */,
 				3071CD5C25621D0C008960D8 /* ViewController3.m in Sources */,
+				2BA726B725830F2E00586F5F /* KSTemplateListViewController.m in Sources */,
+				2BA726BA2583120800586F5F /* KSTemplateListItem.m in Sources */,
+				2BA72697258266F900586F5F /* WWKEasyTableItem.m in Sources */,
+				2BA726B625830F2E00586F5F /* KSTemplateTableViewCell.m in Sources */,
 				2BFEFB5421C1439B009C406E /* main.m in Sources */,
 				2BFEFB5621C1439B009C406E /* AppDelegate.m in Sources */,
 				3071CD5B25621D0C008960D8 /* ViewController2.m in Sources */,
+				2BA72695258266F900586F5F /* WWKEasyTableSectionItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

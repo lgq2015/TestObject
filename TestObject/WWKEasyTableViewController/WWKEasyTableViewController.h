@@ -2,8 +2,8 @@
 //  WWKEasyTableViewController.h
 //  WWKEasyTableView
 //
-//  Created by wyman on 2019/4/24.
-//  Copyright © 2019 wyman. All rights reserved.
+//  Created by maxcwfeng on 2020/8/24.
+//  Copyright © 2020 maxcwfeng. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -50,16 +50,14 @@ typedef NS_ENUM(NSUInteger, WWKEasyInputHandleOption) {
 // 当endEditingWhenTouch=YES时，可以传入此回调用于自定义点击不同地方时是否需要收起键盘
 @property (nonatomic, copy) BOOL(^customEndEditingWhenTouchBlock)(UITouch *touchInTableView);
 
-// wy大神因为冲动的设置了一些estimated属性，因此加个变量干掉
+// 大神因为冲动的设置了一些estimated属性，因此加个变量干掉
 @property (nonatomic, assign) BOOL disableTableEstimatedType;
 
-// wy大神喜欢自己layout tableview一把
+// 大神喜欢自己layout tableview一把
 @property (nonatomic, assign) BOOL ignoreLayoutTableView;
 
 // cellforRow的实现有点问题，如果触发MemoryWarning，cell会被移掉；默认是NO
 @property (nonatomic, assign) BOOL ignoreMemoryWarning;
-//Cell拖动时的阴影Alpa
-@property (nonatomic, assign) CGFloat draggingShadowAlpha;
 
 //禁止tableview setContentOffset，默认是NO（临时解决通过openPopupAnimated弹出的controller，会在presentViewController之后tableview乱滚动的问题）
 @property (nonatomic, assign) BOOL disableTableViewSetContentOffset;

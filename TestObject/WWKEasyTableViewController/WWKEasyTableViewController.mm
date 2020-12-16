@@ -2,13 +2,13 @@
 //  WWKEasyTableViewController.m
 //  WWKEasyTableView
 //
-//  Created by wyman on 2019/4/24.
-//  Copyright © 2019 wyman. All rights reserved.
+//  Created by maxcwfeng on 2020/8/24.
+//  Copyright © 2020 maxcwfeng. All rights reserved.
 //
 
 #import "WWKEasyTableViewController.h"
-#import "WWKEasyTable.h"
-#import "OCPToolkit.h"
+#import "WWKEasyTableCategory.h"
+#import <objc/runtime.h>
 
 typedef NS_ENUM(NSUInteger, EasyHoverState) {
     HoverStateNone,         // 没有悬停
@@ -17,29 +17,32 @@ typedef NS_ENUM(NSUInteger, EasyHoverState) {
     HoverStateSuspend,      // 悬停中
 };
 
+//------------------------------------------------------------
+// 该分类主要用于计算高度跟不服用cell的时候保存信息
 @interface WWKEasyTableItem(Privated)
 
-/** 临时的cell */
 @property (nonatomic, strong) UITableViewCell *tmpCell;
 @property (nonatomic, strong) UITableViewCell *strongRefCellWhenDisableReuse;
 @property (nonatomic, assign) CGFloat easy_lastTblWidth;
+
 @end
 
+//------------------------------------------------------------
 @protocol WWKEasyTableViewDelegate <NSObject>
 
 @optional
 - (BOOL)shouldHandleKeyboard;
 - (void)beforeReloadData;
 - (void)afterReloadData;
-- (CGFloat)shadowAlphaOfDragging;
 
 @end
 
+//------------------------------------------------------------
 @interface WWKEasyTableView : UITableView
 
 @property (nonatomic, weak) id<WWKEasyTableViewDelegate> privateDelegate;
-@property (nonatomic, assign) CGFloat easy_lastTblWidth;
 @property (nonatomic, assign) BOOL disableSetContentOffset;
+
 @end
 
 @implementation WWKEasyTableView
@@ -60,7 +63,6 @@ typedef NS_ENUM(NSUInteger, EasyHoverState) {
 }
 
 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated {
-    // DO NOTHING
     BOOL shouldCallSuper = YES;
     if ([self.privateDelegate respondsToSelector:@selector(shouldHandleKeyboard)]) {
         shouldCallSuper = ![self.privateDelegate shouldHandleKeyboard];
@@ -71,28 +73,12 @@ typedef NS_ENUM(NSUInteger, EasyHoverState) {
 }
 
 - (void)reloadData {
-    LOG(WARNING) << "EasyTableView Before reloadData";
     if ([self.privateDelegate respondsToSelector:@selector(beforeReloadData)]) {
         [self.privateDelegate beforeReloadData];
     }
     [super reloadData];
     if ([self.privateDelegate respondsToSelector:@selector(afterReloadData)]) {
         [self.privateDelegate afterReloadData];
-    }
-}
-
-- (void) didAddSubview:(UIView *)subview {
-    
-    [super didAddSubview:subview];
-
-    if ([self.privateDelegate respondsToSelector:@selector(shadowAlphaOfDragging)]) {
-        CGFloat shadowAlpha = [self.privateDelegate shadowAlphaOfDragging];
-        if (shadowAlpha >= 0.f) {
-            //Cell拖动时候的阴影
-            if([[[subview class] description] isEqualToString:~OBFUSCATED("UIShadowView")]) {
-                subview.alpha = shadowAlpha;
-            }
-        }
     }
 }
 
@@ -103,10 +89,9 @@ typedef NS_ENUM(NSUInteger, EasyHoverState) {
     [super setContentOffset:contentOffset];
 }
 
-
 @end
 
-
+//------------------------------------------------------------
 @interface WWKIgnoreMemoryWarningTableView : WWKEasyTableView
 
 @end
@@ -119,10 +104,11 @@ typedef NS_ENUM(NSUInteger, EasyHoverState) {
 
 + (void)initialize {
     Method m = class_getInstanceMethod(self, @selector(nop));
-    class_addMethod(self, NSSelectorFromString(~OBFUSCATED("_purgeReuseQueues")), method_getImplementation(m), method_getTypeEncoding(m));
+    class_addMethod(self, NSSelectorFromString(@"_purgeReuseQueues"), method_getImplementation(m), method_getTypeEncoding(m));
 }
 @end
 
+//------------------------------------------------------------
 @interface WWKEasyDisappearHover : NSObject
 
 @property (nonatomic, strong) WWKEasyTableItem *hoverItem;
@@ -133,6 +119,7 @@ typedef NS_ENUM(NSUInteger, EasyHoverState) {
 @implementation WWKEasyDisappearHover
 @end
 
+//------------------------------------------------------------
 @interface WWKEasyTableKeyboardInfo : NSObject
 
 // 显示或隐藏
@@ -156,8 +143,7 @@ typedef NS_ENUM(NSUInteger, EasyHoverState) {
 
 @end
 
-typedef void(^WWKEasyScrollTask)(void);
-
+//------------------------------------------------------------
 @interface WWKEasyTableViewController () <UIGestureRecognizerDelegate, WWKEasyTableViewDelegate>
 
 @property (nonatomic, strong) NSMutableDictionary *topHoverItemMap;
@@ -170,7 +156,7 @@ typedef void(^WWKEasyScrollTask)(void);
 
 @property (nonatomic, strong) UITapGestureRecognizer *tap;
 
-@property (nonatomic, weak) WWKEasyTableItem *fixedSpaceItem;
+@property (nonatomic, weak) WWKEasyTableItem *fixedSpaceItem;   //用于撑满屏幕高度时候用，平时用的不多
 @property (nonatomic, assign) BOOL fixedSpaceReloading;
 
 @end
@@ -184,22 +170,24 @@ typedef void(^WWKEasyScrollTask)(void);
 - (instancetype)init {
     if (self = [super init]) {
         self.endEditingWhenTouch = YES;
-        self.draggingShadowAlpha = -1.f;
     }
     return self;
 }
 
 - (void)dealloc {
-    [self _removeNoti];
+    [self _removeKeyboardNoti];
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"WWKEasyTableItemLayout" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"WWKEasyTableItemFixedSpace" object:nil];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.inputHandleOption = WWKEasyKeyboardHandleOptionNone;
     [self _setupUI];
-    [self _addNoti];
+    [self _addKeyboardNoti];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEditCellFrameWhenEditing) name:@"WWKEasyTableItemLayout" object:self.tableView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTableItemFixedSpace:) name:@"WWKEasyTableItemFixedSpace" object:nil];
 }
@@ -221,21 +209,17 @@ typedef void(^WWKEasyScrollTask)(void);
 - (void)setInputHandleOption:(WWKEasyInputHandleOption)inputHandleOption {
     _inputHandleOption = inputHandleOption;
     // 更新通知
-    [self _removeNoti];
-    [self _addNoti];
+    [self _removeKeyboardNoti];
+    [self _addKeyboardNoti];
 }
 
 - (BOOL)shouldHandleKeyboard {
     if (self.inputHandleOption==WWKEasyKeyboardHandleOptionNone ||
         self.inputHandleOption==WWKEasyKeyboardHandleOptionSystem) {
         return NO;
-    } else {
-        return YES;
     }
-}
-
-- (CGFloat)shadowAlphaOfDragging {
-    return self.draggingShadowAlpha;
+    
+    return YES;
 }
 
 - (void)setDisableTableEstimatedType:(BOOL)disable {
@@ -253,10 +237,10 @@ typedef void(^WWKEasyScrollTask)(void);
 
 - (void)_setupUI {
     self.view.backgroundColor = [UIColor whiteColor];
+    self.disableTableEstimatedType = NO;
+    
     self.tableView = [[WWKEasyTableView alloc] initWithFrame:CGRectZero style:[self tableViewStyle]];
     ((WWKEasyTableView*)self.tableView).disableSetContentOffset = self.disableTableViewSetContentOffset;
-    self.disableTableEstimatedType = NO;
-//    self.disableTableEstimatedType = YES; // 父类就不应该设置
     [(WWKEasyTableView *)self.tableView setPrivateDelegate:self];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
     tap.delegate = self;
@@ -290,7 +274,10 @@ typedef void(^WWKEasyScrollTask)(void);
     // 1.强制布局获取高度
     // 2.计算出差的高度
     // 3.重刷一遍表单
-    if (!self.fixedSpaceItem || !self.disableTableEstimatedType) return;
+    if (!self.fixedSpaceItem || !self.disableTableEstimatedType) {
+        return;
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.fixedSpaceReloading) {
             return;
@@ -317,7 +304,7 @@ typedef void(^WWKEasyScrollTask)(void);
                     beforeFixedSpaceItemHeight += obj.footerHeight;
                 }
                 for (WWKEasyTableItem *item in obj.cellDataSource) {
-                    if (item!=self.fixedSpaceItem) {
+                    if (item != self.fixedSpaceItem) {
                         allItemHeight += item.cellHeight;
                         if (itemDetected) {
                             afterFixedSpaceItemHeight += item.cellHeight;
@@ -337,37 +324,39 @@ typedef void(^WWKEasyScrollTask)(void);
                 self.fixedSpaceItem.easy_params[@"p_fixedSpaceMinHeight"] = @(self.fixedSpaceItem.cellHeight);
                 fixedSpaceMinHeight = self.fixedSpaceItem.cellHeight;
             }
-            BOOL needReload = YES;
-            if ((allItemHeight+fixedSpaceMinHeight) < self.tableView.bounds.size.height) { // 调整一波
+
+            if ((allItemHeight + fixedSpaceMinHeight) < self.tableView.bounds.size.height) { // 调整一波
                 self.fixedSpaceItem.cellHeight = self.tableView.bounds.size.height-afterFixedSpaceItemHeight-beforeFixedSpaceItemHeight;
             } else {
                 if (fixedSpaceMinHeight) {
                     self.fixedSpaceItem.cellHeight = fixedSpaceMinHeight;
                 }
             }
-            if (self.fixedSpaceItem.cellHeight <=0) {
-                self.fixedSpaceItem.cellHeight=fixedSpaceMinHeight;
+            if (self.fixedSpaceItem.cellHeight <= 0) {
+                self.fixedSpaceItem.cellHeight = fixedSpaceMinHeight;
             }
-            if (needReload) {
-                self.fixedSpaceReloading = YES;
-                [self.tableView reloadData];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.fixedSpaceReloading = NO;
-                });
-            }
+            
+            self.fixedSpaceReloading = YES;
+            [self.tableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.fixedSpaceReloading = NO;
+            });
         });
     });
 }
 
-- (void)_removeNoti {
+- (void)_removeKeyboardNoti {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)_addNoti {
-    if (WWKEasyKeyboardHandleOptionDisable==_inputHandleOption) return;
+- (void)_addKeyboardNoti {
+    if (WWKEasyKeyboardHandleOptionDisable ==_inputHandleOption) {
+        return;
+    }
+    
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(easykeyboardDidShow:)  name:UIKeyboardDidShowNotification  object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(easykeyboardDidHide:)  name:UIKeyboardDidHideNotification object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(easykeyboardWillShow:)  name:UIKeyboardWillShowNotification  object:nil];
@@ -415,11 +404,14 @@ typedef void(^WWKEasyScrollTask)(void);
 
 - (void)handleEditCellFrameWhenEditing {
     if (![self shouldHandleKeyboard]) return;
+    
     UIResponder *firstResponder = [self currentFirstResponder];
     UITableViewCell *cell = [self currentFirstResponderCell];
     if (!cell || !self.keyboardInfo) return;
+    
     CGRect cellRectInView = [cell convertRect:cell.bounds toView:self.view];
     cellRectInView.size.height = cellRectInView.size.height + self.inputBottomMargin;
+    
     if (self.inputHandleOption == WWKEasyKeyboardHandleOptionCursor) { // 查找光标的位置
         if ([firstResponder isKindOfClass:[UITextView class]]) {
             UITextView *textView = (UITextView *)firstResponder;
@@ -429,13 +421,13 @@ typedef void(^WWKEasyScrollTask)(void);
             cellRectInView.size.height = caretRectInView.size.height + self.inputBottomMargin;   // 光标的高度 （应该是textview的行高比较合理） + 设置的底部间距
         }
     }
+    
     CGFloat margin = CGRectGetMaxY(cellRectInView) - self.keyboardInfo.keyboardY;
     if ((!self->_didShowKeybord && margin != 0) || (self->_didShowKeybord && margin>0)) {//只处理往上滚
         if ((self.tableView.contentOffset.y + margin) > 0) { //只处理往上滚
             [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y + margin) animated:!self->_didShowKeybord];
         }
     }
-
 }
 
 - (void)easykeyboardWillShow:(NSNotification *)noti {
@@ -473,6 +465,7 @@ typedef void(^WWKEasyScrollTask)(void);
         self.keyboardInfo.didChangeContentInset = YES;
         self.tableView.contentInset = UIEdgeInsetsMake(self.tableView.contentInset.top, self.tableView.contentInset.left, self.keyboardInfo.keyboardH, self.tableView.contentInset.right);
     }
+    
     if (self.inputHandleOption == WWKEasyKeyboardHandleOptionCursor) { // 通知时候的光标位置是老位置，在此时无法获取最新的光标位置，所以延时处理
         self.keyboardInfo.didChangeContentInset = YES;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -481,13 +474,13 @@ typedef void(^WWKEasyScrollTask)(void);
     } else if (self.inputHandleOption == WWKEasyKeyboardHandleOptionCell) {
         self.keyboardInfo.didChangeContentInset = YES;
         [self handleEditCellFrameWhenEditing];
-    } else if (self.inputHandleOption == WWKEasyKeyboardHandleOptionNone) {
-    } else if (self.inputHandleOption == WWKEasyKeyboardHandleOptionSystem) {
     }
 }
 
 - (void)easykeyboardWillHide:(NSNotification *)noti {
-    if (!_isAppear || !self.keyboardInfo.didChangeContentInset) return;
+    if (!_isAppear || !self.keyboardInfo.didChangeContentInset) {
+        return;
+    }
     self.tableView.contentInset = self.keyboardInfo.startEdgeInset;
     self.tableView.contentOffset = self.keyboardInfo.startContentOffset;
     self.keyboardInfo = nil;
@@ -558,7 +551,7 @@ typedef void(^WWKEasyScrollTask)(void);
     }
     Class cellClass = [item cellClass];
     NSString *reusableIdentifer = NSStringFromClass(cellClass);
-    if (item.isCloseReused || item.isDisableCellReused) {
+    if (item.isDisableCellReused) {
         NSTimeInterval time= [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSince1970];
         reusableIdentifer = [NSString stringWithFormat:@"%@_%p_%@_%f", cellClass, item, [self create16LetterAndNumber], time];
     }
@@ -570,11 +563,9 @@ typedef void(^WWKEasyScrollTask)(void);
                                                                                                                ]];
     }
     if (!cell) {
-        LOG(WARNING) << "cellForItem STEP1: " << reusableIdentifer ;
         cell = [[cellClass alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reusableIdentifer];
     }
     if (!cell) {
-        LOG(WARNING) << "cellForItem STEP2: " << reusableIdentifer ;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"WWKEasyTableViewDefaultCell"];
     }
     if (item.disableCellReused) {
@@ -653,7 +644,6 @@ typedef void(^WWKEasyScrollTask)(void);
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WWKEasyTableSectionItem *sectionItem = [self.dataSource objectAtIndex:indexPath.section];
     WWKEasyTableItem *item = [sectionItem.cellDataSource objectAtIndex:indexPath.row];
-    item.eventObserver = self;
     item.tableView = self.tableView;
     UITableViewCell *cell = [self cellForItem:item];
     return cell;
@@ -692,7 +682,7 @@ typedef void(^WWKEasyScrollTask)(void);
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
     [self.topHoverItemMap removeObjectForKey:@(indexPath.row).stringValue];
 }
-
+ 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     WWKEasyTableSectionItem *sectionItem = [self.dataSource objectAtIndex:indexPath.section];
     WWKEasyTableItem *item = [sectionItem.cellDataSource objectAtIndex:indexPath.row];
@@ -710,7 +700,7 @@ typedef void(^WWKEasyScrollTask)(void);
         item.easy_lastTblWidth = tblWidth;
     }
     
-    if (0.01==item.cellHeight || 0==item.cellHeight || item.closeCellCache || item.isDisableCellHeightCache || itemLastWidthChanged) {
+    if (0.01==item.cellHeight || 0==item.cellHeight || item.disableCellReused || item.isDisableCellHeightCache || itemLastWidthChanged) {
         if (item.configHeightBlock) {
             // 1.没有则构造一个cell用于布局计算-这个cell最终有可能被系统抛弃掉
             if (!item.cell) {
@@ -747,6 +737,8 @@ typedef void(^WWKEasyScrollTask)(void);
             CGFloat cellH = [item.cell sizeThatFits:CGSizeMake(tblWidth, CGFLOAT_MAX)].height;
             if (!cellH) {
                cellH = [item.cell.contentView systemLayoutSizeFittingSize:CGSizeMake(self.tableView.bounds.size.width, MAXFLOAT) withHorizontalFittingPriority:UILayoutPriorityRequired verticalFittingPriority:UILayoutPriorityFittingSizeLevel].height;
+                
+                [item.cell.contentView sizeThatFits:CGSizeZero];
             }
             // 3.计算高度失效
             if (!cellH) {
@@ -757,9 +749,7 @@ typedef void(^WWKEasyScrollTask)(void);
             item.cellHeight = cellH;
         }
     }
-    if (item.cellHeight < 0.01) {
-//        LOG(WARNING) << "easytableview cell class " << [NSStringFromClass(item.cellClass) safeUTF8String] << " cellHeight : " << item.cellHeight << " isDisableCellHeightCache : " << item.isDisableCellHeightCache << " autoCalculateHeight : " << item.autoCalculateHeight;
-    }
+
     return item.cellHeight;
 }
 
@@ -772,7 +762,6 @@ typedef void(^WWKEasyScrollTask)(void);
     if(item.cellClickAction){
         item.cellClickAction(item);
     }
-    [item.eventObserver easy_performSelector:item.didSelectRowSelector withObjects:@[item]];
 }
 
 
@@ -907,18 +896,14 @@ typedef void(^WWKEasyScrollTask)(void);
     return [re copy];
 }
 
-// 根据WWKEasyTableItem的filterID查询对应的WWKEasyTableItem
+// 获取所有WWKEasyTableItem
 - (NSArray<__kindof WWKEasyTableItem *> *)p_getAllEasyTableItems {
     // 这里没有用map效率比较低，但是map维护成本高，先这样用一下吧
     NSMutableArray<WWKEasyTableItem *> *allItems = [NSMutableArray array];
-    NSMutableArray<WWKEasyTableItem *> *re = [NSMutableArray array];
     [self.dataSource enumerateObjectsUsingBlock:^(WWKEasyTableSectionItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [allItems addObjectsFromArray:obj.cellDataSource];
     }];
-    [allItems enumerateObjectsUsingBlock:^(WWKEasyTableItem *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [re addObject:obj];
-    }];
-    return [re copy];
+    return [allItems copy];
 }
 
 @end

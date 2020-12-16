@@ -2,8 +2,8 @@
 //  WWKEasyTableCategory.h
 //  WWKEasyTableView
 //
-//  Created by wyman on 2019/4/24.
-//  Copyright © 2019 wyman. All rights reserved.
+//  Created by maxcwfeng on 2020/8/24.
+//  Copyright © 2020 maxcwfeng. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

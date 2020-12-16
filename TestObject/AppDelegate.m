@@ -10,6 +10,7 @@
 #import "UITestViewController.h"
 #import "UIRootViewController.h"
 #import "SoundView.h"
+#import "KSTemplateListViewController.h"
 #import "ViewController4.h"
 #if DEBUG
 #import <CocoaHotReload/CocoaHotReload.h>
@@ -30,7 +31,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    UIRootViewController* rootVC = [UIRootViewController new];
+    KSTemplateListViewController* rootVC = [KSTemplateListViewController new];
     UINavigationController* tempNv = [[UINavigationController alloc] initWithRootViewController:rootVC];
     
     [self.window setRootViewController:tempNv];
